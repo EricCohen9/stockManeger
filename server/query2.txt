@@ -1,0 +1,80 @@
+deleteUser
+{
+  "query": mutation ($deleteUserId: Int!) {
+  deleteUser(id: $deleteUserId)
+}
+  "variables": {
+    "deleteUserId": "44"
+  }
+}
+getAllUsers
+query Query {
+  getAllUsers {
+    id
+    email
+    password
+  }
+}
+registerUser
+mutation Mutation($email: String!, $password: String!) {
+  registerUser(email: $email, password: $password) {
+        "variables":{
+    "email": null,
+    "password": null
+    } 
+    user {
+      id
+      email
+      password
+    }
+    accessToken
+  }
+}
+loginUser
+mutation LoginUser($email: String!, $password: String!) {
+  loginUser(email: $email, password: $password) {
+       "variables":{
+    "email": null,
+    "password": null
+    } 
+    user {
+      id
+      email
+      password
+    }
+    accessToken
+  }
+}
+forgotPassword
+mutation Mutation($email: String!) {
+  forgotPassword(email: $email)
+   "variables":{
+    "email": null,
+    } 
+}
+comperepassword
+mutation Mutation($email: String!, $code: String!) {
+  comperepassword(email: $email, code: $code)
+  "variables":{
+  "email": null,
+  "code": null
+}
+}
+resetPassword
+mutation Mutation($email: String!, $password: String!) {
+  resetPassword(email: $email, password: $password) {
+    "variables":{
+  "email": null,
+  "password": null
+}
+    success
+    message
+  }
+}
+"watch": "tsc -w",
+    "dev": "nodemon dist/server.js",
+    "start": "concurrently -k \"npm run watch\" \"npm run dev\"",
+dockerfile CMD [ "node", "./dist/server.js" ]
+"start": "tsc && dist/src/server.js",
+    "dev": "nodemon",
+    "ts": "tsc -w",

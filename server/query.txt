@@ -1,0 +1,33 @@
+deleteUser
+{
+  "query": "mutation($userId: ID!) { deleteUser(id: $userId) }",
+  "variables": {
+    "userId": "44"
+  }
+}
+getAllUsers
+{
+  "query": "query { getAllUsers { id  email } }"
+}
+register
+{
+  "query": "mutation { registerUser( email: \"john1@example.com\", password: \"1234567q\" ) { user { id email } accessToken } }"
+}
+login
+{
+   "query": "mutation { loginUser( email: \"john1@example.com\", password: \"1234567q\" ) {user { id email } accessToken } }"
+}
+forgotPassword
+{
+  "query": "mutation { forgotPassword (email: \"john@example.com\")}"
+}
+comperepassword
+{
+  "query": "mutation { comperepassword (email: \"john@example.com\",code: \"12345\")}"
+}
+resetPassword
+{
+  "query": "mutation { resetPassword(email: \"john@example.com\", password: \"1234567q\") { success, message } }"
+}
+"email": "rewqere@gmil.com",
+  "password": "12345678q",

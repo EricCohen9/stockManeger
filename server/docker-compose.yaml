@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # Node.js Backend Service
+  backend:
+    image: backend
+    working_dir: /app
+    volumes:
+      - ./class-3-finalProject-OSM-back:/app
+    command: npm run test
+    environment:
+      - NODE_ENV=test
+
+  # PostgreSQL Database Service
+  db:
+    image: postgres:13 
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "mydatabase", "-U", "myuser"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  data-populator:
+    image: node:14
+    working_dir: /app
+    volumes:
+      - ./data-populator:/app
+    command: npm run populate-db # Adjust the command as per your setup
+
